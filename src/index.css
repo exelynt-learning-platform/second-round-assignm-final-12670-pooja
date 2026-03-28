@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+/* ── Google Fonts ──────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+
+/* ── Custom Theme Variables ───────────────────────────── */
+:root {
+  --app-bg-light: #f8fafc;
+  --app-bg-dark: #0f172a;
+  --main-bg-light: #ffffff;
+  --main-bg-dark: #0f172a;
+  --panel-light: rgba(255, 255, 0.4); /* Glass factor */
+  --panel-dark: rgba(30, 41, 59, 0.95);
+  --border-light: rgba(0, 0, 0, 0.05);
+  --border-dark: rgba(255, 255, 255, 0.1);
+  --text-light: #1e293b;
+  --text-dark: #f1f5f9;
+}
+
+/* ── Global resets & base ──────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 🔧 Dark Mode Fix: Specifically targeting .dark class on html */
+html.dark body, 
+html.dark #root {
+  background-color: var(--app-bg-dark);
+  color: #f1f5f9;
+}
+
+/* ── Custom scrollbar (webkit) ─────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* ── Typography & Prose ────────────────────────────────── */
+.prose {
+  font-size: 0.925rem;
+  line-height: 1.6;
+}
+
+.prose code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85em;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+html.dark .prose code:not(pre code) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #38bdf8;
+}
+
+/* 🔧 Explicit Prose Dark Mode */
+.prose-theme {
+  color: #1e293b;
+}
+
+html.dark .prose-theme {
+  color: #f1f5f9 !important;
+}
+
+html.dark .prose-theme p,
+html.dark .prose-theme li,
+html.dark .prose-theme h1,
+html.dark .prose-theme h2,
+html.dark .prose-theme h3,
+html.dark .prose-theme strong {
+  color: #f1f5f9 !important;
+}
+
+/* Code block styles */
+.code-block-container {
+  margin: 1rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-light);
+}
+
+html.dark .code-block-container {
+  border-color: var(--border-dark);
+}
+
+/* ── Glassmorphism Utilities ──────────────────────────── */
+/* ── Semantic Theme Classes ─────────────────────────────────── */
+.app-container {
+  background: var(--app-bg-light);
+  color: var(--text-light);
+}
+
+html.dark .app-container {
+  background: var(--app-bg-dark) !important;
+  color: var(--text-dark) !important;
+}
+
+.main-bg {
+  background: var(--main-bg-light);
+}
+
+html.dark .main-bg {
+  background: var(--main-bg-dark) !important;
+}
+
+.sidebar-bg {
+  background: var(--app-bg-light);
+}
+
+html.dark .sidebar-bg {
+  background: var(--app-bg-dark) !important;
+  border-right: 1px solid var(--border-dark);
+}
+
+.panel-glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+html.dark .panel-glass {
+  background: var(--panel-dark) !important;
+  border-color: var(--border-dark) !important;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+}
+
+html.dark .glass {
+  background: rgba(15, 23, 42, 0.85) !important; /* Much darker */
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.active-sidebar-item {
+  background: #ffffff;
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #2563eb;
+}
+
+html.dark .active-sidebar-item {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #60a5fa !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Text coloring variants */
+.text-primary {
+  color: var(--text-light);
+}
+
+html.dark .text-primary {
+  color: var(--text-dark) !important;
+}
+
+.text-secondary {
+  color: #64748b;
+}
+
+html.dark .text-secondary {
+  color: #94a3b8 !important;
+}
+
+/* ── Animations ────────────────────────────────────────── */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-enter {
+  animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Smooth sidebar transition */
+aside {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s ease;
+}
